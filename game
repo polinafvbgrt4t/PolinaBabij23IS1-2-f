@@ -7,9 +7,10 @@ public class Main {
         boolean statueActivated = false;
         int Artefact = 0;
         boolean  Artefact1=false;
-         boolean  Artefact2=false;
+    
           boolean  Artefact3=false;
         int NumberOfVentilationOpenings = 0;
+        
 
         System.out.println("Вы проснулись в комнате, но не можете вспомнить своего имени. Придумайте новое и впишите, а почему бы и нет?");
 
@@ -40,7 +41,8 @@ public class Main {
                    }
                     else{System.out.println(name + " Вы уже обнаружили первый артефакт");}
                     break;
-                case 3:
+                     
+                   case 3:
                     if (statueActivated) {
                         System.out.println(name + " Вы открыли ящик! Кажется там что-то лежит.. Это же отмычка! Попробуйте применить к двери");
                         TheMasterKey = true;
@@ -49,29 +51,23 @@ public class Main {
                         System.out.println("Ох, как жаль, ящик заперт. Но статуя выглядит довольно подозрительно, осмотрите ее для начала..");
                     }
                     break;
-                case 4:
-                    if(Artefact2==false)
-                    {
-                    if (NumberOfVentilationOpenings == 3){
-                        System.out.println(name + " Вы обнаружили второй артефакт в вентиляции, его явно можно применить к статуе!");
-                    Artefact++;}
-                       if (NumberOfVentilationOpenings == 2)
-                      {  System.out.println("Вентиляция почти открылась, стоит попробовать ее открыть еще раз!");
-                    NumberOfVentilationOpenings++;}
+                
+                    
+                 
+                 
+                     case 4:
+                     if (NumberOfVentilationOpenings  >= 3) {
+                         
+                         System.out.println("Вы открыли вентиляцию! " + name + ", вы нашли артефакт");
+                         Artefact++;
+                     } else {
+                         System.out.println("Вы пытаетесь открыть вентиляцию...");
+                        NumberOfVentilationOpenings ++;
+                     }
+                     break;
+                    
+                    
                   
-                     if (NumberOfVentilationOpenings == 1)
-                      {  System.out.println("Решетка уже шатается, стоит попробовать ее открыть еще раз!");
-                    NumberOfVentilationOpenings++;}
-                 
-                 
-                    if (NumberOfVentilationOpenings == 0)
-                      {  System.out.println("В вентиляции точно что-то есть, стоит попробовать ее открыть еще раз!");
-                    NumberOfVentilationOpenings++;}
-                    
-                    }
-                    
-                   
-                    break;
                 case 5:
                     if(Artefact3==false)
                    { System.out.println(name + " Вы обнаружили третий артефакт на тумбочке, его явно можно применить к статуе!");
