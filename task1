@@ -1,0 +1,95 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        boolean TheMasterKey = false;
+        boolean statueActivated = false;
+        int Artefact = 0;
+        int NumberOfVentilationOpenings = 0;
+
+        System.out.println("Вы проснулись в комнате, но не можете вспомнить своего имени. Придумайте новое и впишите, а почему бы и нет?");
+
+        String name = scanner.next();
+        System.out.println("Вы осмотрели комнату и ваш взгляд заострился на нескольких предметах. Может с ними получиться что-то сделать? С чего начнете?");
+        
+        while (true) {
+            showPossibleActions();
+            int action = scanner.nextInt();
+            
+            switch (action) {
+                case 0:
+                    showPossibleActions();
+                    break;
+                case 1:
+                    if (TheMasterKey==true) {
+                        System.out.println("Вы успешно сбежали!");
+                        return;
+                    } else {
+                        System.out.println("Для открытия двери вам необходимо найти отмычку!");
+                    }
+                    break;
+                case 2:
+                    System.out.println(name + " Вы обнаружили первый артефакт под кроватью, его явно можно применить к статуе!");
+                    Artefact++;
+                    break;
+                case 3:
+                    if (statueActivated) {
+                        System.out.println(name + " Вы открыли ящик! Кажется там что-то лежит.. Это же отмычка! Попробуйте применить к двери");
+                        TheMasterKey = true;
+                      
+                    } else {
+                        System.out.println("Ох, как жаль, ящик заперт. Но статуя выглядит довольно подозрительно, осмотрите ее для начала..");
+                    }
+                    break;
+                case 4:
+                    if (NumberOfVentilationOpenings == 3){
+                        System.out.println(name + " Вы обнаружили второй артефакт в вентиляции, его явно можно применить к статуе!");
+                    Artefact++;}
+                       if (NumberOfVentilationOpenings == 2)
+                      {  System.out.println("Вентиляция почти открылась, стоит попробовать ее открыть еще раз!");
+                    NumberOfVentilationOpenings++;}
+                  
+                     if (NumberOfVentilationOpenings == 1)
+                      {  System.out.println("Решетка уже шатается, стоит попробовать ее открыть еще раз!");
+                    NumberOfVentilationOpenings++;}
+                 
+                 
+                    if (NumberOfVentilationOpenings == 0)
+                      {  System.out.println("В вентиляции точно что-то есть, стоит попробовать ее открыть еще раз!");
+                    NumberOfVentilationOpenings++;}
+                  
+                    break;
+                case 5:
+                    System.out.println(name + " Вы обнаружили третий артефакт на тумбочке, его явно можно применить к статуе!");
+                    Artefact++;
+                    break;
+                case 6:
+                    if (Artefact == 3) 
+                    {
+                        System.out.println(name + " Вы нашли все артефакты!! Статуя задвигалась... Теперь она активирована и прямо перед вами появляется ключик, складывается ощущение, что он прекрасно подойдет к ящику");
+                        statueActivated = true;
+                        
+                    }
+                    else
+                    {
+                        System.out.println("Хм, не хватает трех элементов, по видимому каких-то артефактов! Давайте отправимся на их поиски?");
+                    }
+                    break;
+                default:
+                    System.out.println("Некорректный выбор.");
+                    break;
+            }
+        }
+    }
+
+    private static void showPossibleActions() {
+        System.out.println("1. Открыть дверь");
+        System.out.println("2. Заглянуть под кровать");
+        System.out.println("3. Открыть ящик в углу комнаты");
+        System.out.println("4. Открыть вентиляцию");
+        System.out.println("5. Взглянуть на тумбочку");
+        System.out.println("6. Взглянуть на статую рядом с дверью");
+        System.out.print("Выберите действие: ");
+    }
+}
